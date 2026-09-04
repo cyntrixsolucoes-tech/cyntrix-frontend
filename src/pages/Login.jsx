@@ -8,16 +8,31 @@ export default function Login() {
   const [error, setError] = useState('')
   const navigate = useNavigate()
 
-  const handleLogin = (e) => {
-    e.preventDefault()
-    if (email && password.length >= 3) {
-      localStorage.setItem('token', 'demo-token-' + Date.now())
-      localStorage.setItem('userName', email.split('@')[0])
+ const handleLogin = async (e) => {
+  e.preventDefault()
+  setError('')
+  
+  try {
+    const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000'
+    const response = await fetch(`${apiUrl}/api/login`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, password })
+    })
+    
+    const data = await response.json()
+    
+    if (response.ok && data.success) {
+      localStorage.setItem('token', data.token)
+      localStorage.setItem('userName', data.user.name)
       navigate('/dashboard')
     } else {
-      setError('Preencha todos os campos')
+      setError(data.error || 'Erro ao fazer login')
     }
+  } catch (err) {
+    setError('Erro de conexão: ' + err.message)
   }
+}
 
   return (
     <div className="login-container">
