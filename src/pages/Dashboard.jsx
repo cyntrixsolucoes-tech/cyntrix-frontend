@@ -50,4 +50,4 @@ export default function Dashboard() {
         </div>
         <div style={{border: '1px solid #e5e7eb', borderRadius: '8px', padding: '20px', background: 'white'}}>
           <h3>📝 Atas</h3>
-          <p style={{marginTop: '10px', color:
+          <p style={{marginTop:
