@@ -50,4 +50,11 @@ export default function Dashboard() {
         </div>
         <div style={{border: '1px solid #e5e7eb', borderRadius: '8px', padding: '20px', background: 'white'}}>
           <h3>📝 Atas</h3>
-          <p style={{marginTop:
+          <p style={{marginTop: '10px', color: '#666'}}>0 atas</p>
+        </div>
+      </div>
+
+      <button onClick={handleLogout} style={{marginTop: '30px', padding: '10px 20px', background: '#dc2626', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer'}}>Sair</button>
+    </div>
+  )
+}
